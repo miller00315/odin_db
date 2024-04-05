@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS chat_message(
     id INT GENERATED ALWAYS AS IDENTITY,
     uuid VARCHAR(100) UNIQUE not null,
     chat_uuid VARCHAR(100) not null,
-    tool_call VARCHAR(25) not null,
+    tool_call VARCHAR(25),
     content TEXT,
     chat_role VARCHAR(100) not null,
 
