@@ -2,27 +2,27 @@ GRANT ALL PRIVILEGES ON DATABASE odin_db TO odin;
 
 \connect odin_db;
 
-CREATE TABLE IF NOT EXISTS user (
+ CREATE TABLE user_ (
   id INT GENERATED ALWAYS AS IDENTITY,
-  uuid VARCHAR(100) UNIQUE not null,
-  email VARCHAR(100) UNIQUE not null,
-)
+  uuid VARCHAR(100) UNIQUE NOT NULL,
+  user_email VARCHAR(100) UNIQUE NOT NULL
+);
 
-CREATE TABLE IF NOT EXISTS user_site (
+ CREATE TABLE user_site (
    id INT GENERATED ALWAYS AS IDENTITY,
    uuid VARCHAR(100) UNIQUE not null,
    site_name VARCHAR(100) UNIQUE NOT NULL,
    site_description TEXT NOT NULL,
-   site_url TEXT NOT NULL
+   site_url TEXT NOT NULL,
    user_uuid VARCHAR(100) not null,
 
-   CONSTRAINT fk_user
+   CONSTRAINT fk_user_table
         FOREIGN KEY(user_uuid)
-        REFERENCES user(uuid)
-        ON DELETE CASCADE
-)
+        REFERENCES user_(uuid)
+        ON DELETE CASCADE 
+);
 
-CREATE TABLE IF NOT EXISTS user_site_route (
+CREATE TABLE user_site_route (
    id INT GENERATED ALWAYS AS IDENTITY,
    uuid VARCHAR(100) UNIQUE not null,
    route_url TEXT NOT NULL,
@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS user_site_route (
         FOREIGN KEY(user_site_uuid)
         REFERENCES user_site(uuid)
         ON DELETE CASCADE
-)
+);
 
-CREATE TABLE IF NOT EXISTS chat (
+CREATE TABLE chat (
   id INT GENERATED ALWAYS AS IDENTITY,
   uuid VARCHAR(100) UNIQUE not null,
   user_site_uuid VARCHAR(100) not null,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS chat (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS chat_message(
+CREATE TABLE chat_message(
     id INT GENERATED ALWAYS AS IDENTITY,
     uuid VARCHAR(100) UNIQUE not null,
     chat_uuid VARCHAR(100) not null,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS chat_message(
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS run (
+CREATE TABLE run (
     id INT GENERATED ALWAYS AS IDENTITY,
     uuid VARCHAR(100) UNIQUE not null,
     running_status VARCHAR(100) not null,
