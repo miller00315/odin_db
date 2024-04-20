@@ -50,6 +50,19 @@ CREATE TABLE user_site_route (
         ON DELETE CASCADE
 );
 
+
+CREATE TABLE user_site_route_scrap(
+   id INT GENERATED ALWAYS AS IDENTITY,
+   uuid VARCHAR(100) UNIQUE not null,
+   user_site_route_uuid VARCHAR(100) not null,
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+
+   CONSTRAINT fk_user_site
+        FOREIGN KEY(user_site_route_uuid)
+        REFERENCES user_site_route(uuid)
+        ON DELETE CASCADE
+);
+
 CREATE TABLE chat (
   id INT GENERATED ALWAYS AS IDENTITY,
   uuid VARCHAR(100) UNIQUE NOT NULL,
