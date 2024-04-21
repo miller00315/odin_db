@@ -60,6 +60,7 @@ CREATE TABLE user_site_route_scrap(
    parent_uuid VARCHAR(100),
    title TEXT,
    content TEXT,
+   scrap_description TEXT,
    user_site_route_uuid VARCHAR(100) NOT NULL,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
