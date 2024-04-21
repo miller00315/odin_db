@@ -54,8 +54,10 @@ CREATE TABLE user_site_route (
 CREATE TABLE user_site_route_scrap(
    id INT GENERATED ALWAYS AS IDENTITY,
    uuid VARCHAR(100) UNIQUE NOT NULL,
+   item_id VARCHAR(100),
    css_class VARCHAR(100),
    function_on_the_page VARCHAR(100),
+   parent_uuid VARCHAR(100),
    title TEXT,
    content TEXT,
    user_site_route_uuid VARCHAR(100) NOT NULL,
@@ -64,7 +66,12 @@ CREATE TABLE user_site_route_scrap(
    CONSTRAINT fk_user_site
         FOREIGN KEY(user_site_route_uuid)
         REFERENCES user_site_route(uuid)
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+
+   CONSTRAINT fk_user_site_route_scrap
+        FOREIGN KEY(parent_uuid)
+        REFERENCES user_site_route_scrap(uuid)
+        ON DELETE SET NULL
 );
 
 CREATE TABLE chat (
