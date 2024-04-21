@@ -12,7 +12,7 @@ GRANT ALL PRIVILEGES ON DATABASE odin_db TO odin;
 CREATE TABLE api_key ( 
    id INT GENERATED ALWAYS AS IDENTITY,
    uuid VARCHAR(100) UNIQUE NOT NULL,
-   user_uuid VARCHAR(100) not null,
+   user_uuid VARCHAR(100) NOT NULL,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
    CONSTRAINT fk_user_table
@@ -23,7 +23,7 @@ CREATE TABLE api_key (
 
 CREATE TABLE user_site (
    id INT GENERATED ALWAYS AS IDENTITY,
-   uuid VARCHAR(100) UNIQUE not null,
+   uuid VARCHAR(100) UNIQUE NOT NULL,
    site_name VARCHAR(100) UNIQUE NOT NULL,
    site_description TEXT NOT NULL,
    site_url TEXT NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE user_site (
 
 CREATE TABLE user_site_route (
    id INT GENERATED ALWAYS AS IDENTITY,
-   uuid VARCHAR(100) UNIQUE not null,
+   uuid VARCHAR(100) UNIQUE NOT NULL,
    route_url TEXT NOT NULL,
    route_description TEXT NOT NULL,
-   user_site_uuid VARCHAR(100) not null,
+   user_site_uuid VARCHAR(100) NOT NULL,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
    CONSTRAINT fk_user_site
@@ -53,8 +53,12 @@ CREATE TABLE user_site_route (
 
 CREATE TABLE user_site_route_scrap(
    id INT GENERATED ALWAYS AS IDENTITY,
-   uuid VARCHAR(100) UNIQUE not null,
-   user_site_route_uuid VARCHAR(100) not null,
+   uuid VARCHAR(100) UNIQUE NOT NULL,
+   css_class VARCHAR(100),
+   function_on_the_page VARCHAR(100),
+   title TEXT,
+   content TEXT,
+   user_site_route_uuid VARCHAR(100) NOT NULL,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
    CONSTRAINT fk_user_site
@@ -77,7 +81,7 @@ CREATE TABLE chat (
 
 CREATE TABLE chat_message(
     id INT GENERATED ALWAYS AS IDENTITY,
-    uuid VARCHAR(100) UNIQUE not null,
+    uuid VARCHAR(100) UNIQUE NOT NULL,
     chat_uuid VARCHAR(100) NOT NULL,
     tool_call TEXT,
     content TEXT,
