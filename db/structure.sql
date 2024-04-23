@@ -50,7 +50,7 @@ CREATE TABLE user_site_route (
         ON DELETE CASCADE
 );
 
-CREATE TABLE external_api_access(
+CREATE TABLE api_access(
    id INT GENERATED ALWAYS AS IDENTITY,
    uuid VARCHAR(100) UNIQUE NOT NULL,
    api_access_description TEXT,
@@ -65,17 +65,17 @@ CREATE TABLE external_api_access(
         ON DELETE CASCADE
 );
 
-CREATE TABLE external_api_access_parameter(
+CREATE TABLE api_access_parameter(
    id INT GENERATED ALWAYS AS IDENTITY,
    uuid VARCHAR(100) UNIQUE NOT NULL,
    parameter_type VARCHAR(100) UNIQUE NOT NULL,
    parameter_name VARCHAR(100) UNIQUE NOT NULL,
-   external_api_access_uuid VARCHAR(100) UNIQUE NOT NULL,
+   api_access_uuid VARCHAR(100) UNIQUE NOT NULL,
    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
-   CONSTRAINT fk_external_api_access
-        FOREIGN KEY(external_api_access_uuid)
-        REFERENCES external_api_access(uuid)
+   CONSTRAINT fk_api_access
+        FOREIGN KEY(api_access_uuid)
+        REFERENCES api_access(uuid)
         ON DELETE CASCADE
 );
 
