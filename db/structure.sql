@@ -53,7 +53,7 @@ CREATE TABLE user_site_route (
 CREATE TABLE user_style_sheet (
         id INT GENERATED ALWAYS AS IDENTITY,
         uuid VARCHAR(100) UNIQUE NOT NULL,
-        style_sheet_url TEXT NOT NULL,
+        style_sheet_url TEXT,
         style_sheet_name VARCHAR(100) NOT NULL,
         style_sheet_description TEXT,
         style_sheet_content TEXT,
