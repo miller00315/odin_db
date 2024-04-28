@@ -50,6 +50,21 @@ CREATE TABLE user_site_route (
                 ON DELETE CASCADE
 );
 
+CREATE TABLE user_style_sheet (
+        id INT GENERATED ALWAYS AS IDENTITY,
+        uuid VARCHAR(100) UNIQUE NOT NULL,
+        style_sheet_url TEXT NOT NULL,
+        style_sheet_name VARCHAR(100) NOT NULL,
+        style_sheet_description TEXT,
+        user_uuid VARCHAR(100) NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+
+        CONSTRAINT fk_user_table
+                FOREIGN KEY(user_uuid)
+                REFERENCES user_(uuid)
+                ON DELETE CASCADE   
+);
+
 CREATE TABLE api_access(
         id INT GENERATED ALWAYS AS IDENTITY,
         uuid VARCHAR(100) UNIQUE NOT NULL,
