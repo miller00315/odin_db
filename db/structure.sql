@@ -56,6 +56,7 @@ CREATE TABLE user_style_sheet (
         style_sheet_url TEXT NOT NULL,
         style_sheet_name VARCHAR(100) NOT NULL,
         style_sheet_description TEXT,
+        style_sheet_content TEXT,
         user_uuid VARCHAR(100) NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
