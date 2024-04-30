@@ -113,6 +113,7 @@ CREATE TABLE user_site_route_scrap(
         id INT GENERATED ALWAYS AS IDENTITY,
         uuid VARCHAR(100) UNIQUE NOT NULL,
         item_id VARCHAR(100),
+        tag VARCHAR(100) NOT NULL,
         css_class VARCHAR(100),
         function_on_the_page VARCHAR(100),
         parent_uuid VARCHAR(100),
@@ -151,8 +152,14 @@ CREATE TABLE chat_message(
         chat_uuid VARCHAR(100) NOT NULL,
         tool_call TEXT,
         content TEXT,
+        chat_message_child_uuid VARCHAR(100),
         chat_role VARCHAR(100) NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+
+        CONSTRAINT fk_chat_message
+                FOREIGN KEY(chat_message_child_uuid)
+                REFERENCES chat_message(uuid)
+                ON DELETE SET NULL,
 
         CONSTRAINT fk_chat
                 FOREIGN KEY(chat_uuid)
