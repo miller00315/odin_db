@@ -153,6 +153,7 @@ CREATE TABLE chat_message(
         tool_call TEXT,
         content TEXT,
         chat_role VARCHAR(100) NOT NULL,
+        device_origin VARCHAR(100),
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,
 
         CONSTRAINT fk_chat
