@@ -36,6 +36,25 @@ CREATE TABLE user_site (
                 ON DELETE CASCADE 
 );
 
+CREATE TABLE related_sites (
+        id INT GENERATED ALWAYS AS IDENTITY,
+        uuid VARCHAR(100) UNIQUE NOT NULL,
+        user_site_primary_uuid VARCHAR(100) NOT NULL,
+        user_site_secondary_uuid VARCHAR(100) NOT NULL,
+        relation_description TEXT NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+        
+        CONSTRAINT fk_user_site_
+                FOREIGN KEY(user_site_primary_uuid)
+                REFERENCES user_site(uuid)
+                ON DELETE CASCADE,
+        
+        CONSTRAINT fk_user_site
+                FOREIGN KEY(user_site_secondary_uuid)
+                REFERENCES user_site(uuid)
+                ON DELETE CASCADE
+);
+
 CREATE TABLE user_site_route (
         id INT GENERATED ALWAYS AS IDENTITY,
         uuid VARCHAR(100) UNIQUE NOT NULL,
