@@ -215,6 +215,7 @@ CREATE TABLE run (
 CREATE TABLE external_link(
         id INT GENERATED ALWAYS AS IDENTITY,
         uuid VARCHAR(100) UNIQUE NOT NULL,
+        link_url TEXT NOT NULL,
         user_site_uuid VARCHAR(100) NOT NULL,
         link_description TEXT NOT NULL,
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,
